@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anniversaire Chill 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #ffe4e6, #f3e8ff);
+      color: #3b0764;
+      text-align: center;
+    }
+    .header-img {
+      width: 60%;
+      max-height: 3000px;
+      object-fit: cover;
+      border-bottom: 5px solid #f472b6;
+    }
+    .container {
+      padding: 2rem 1rem;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      color: #db2777;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .countdown-box {
+      background: #fdf2f8;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      min-width: 70px;
+    }
+    .countdown-box span {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #9333ea;
+    }
+    .countdown-box label {
+      font-size: 0.9rem;
+      color: #6b21a8;
+    }
+    .location {
+      margin-top: 3rem;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Birthday Party ! 🎀</h1>
+    <img class="header-img" src="image/image.webp">
+    <p>Viens fêter ça avec nous le <strong>5 mai 2025 à 22h</strong> 🌸</p>
+    <div class="countdown" id="countdown">
+      <div class="countdown-box"><span id="days">0</span><label>jours</label></div>
+      <div class="countdown-box"><span id="hours">0</span><label>heures</label></div>
+      <div class="countdown-box"><span id="minutes">0</span><label>minutes</label></div>
+      <div class="countdown-box"><span id="seconds">0</span><label>secondes</label></div>
+    </div>
+
+    <div class="location">
+      <h2>📍 Lieu de la soirée</h2>
+      <p>Lycée Agricole, Somme-Suippe</p>
+      <iframe 
+        src="https://www.google.com/maps?q=lyc%C3%A9e+agricole+Somme-Suippe&output=embed"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <script>
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    const eventDate = new Date('2025-05-05T22:00:00');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = eventDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML = "C'est parti 🎊 !";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      daysEl.textContent = days;
+      hoursEl.textContent = hours;
+      minutesEl.textContent = minutes;
+      secondsEl.textContent = seconds;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
